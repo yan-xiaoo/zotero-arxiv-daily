@@ -5,7 +5,7 @@ zotero:
 
 email:
   sender: ${oc.env:SENDER}
-  receiver: ${oc.env:RECEIVER}
+  receiver: [${oc.env:RECEIVER}]
   smtp_server: smtp.qq.com
   smtp_port: 465
   sender_password: ${oc.env:SENDER_PASSWORD}
