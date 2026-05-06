@@ -14,9 +14,8 @@ from zotero_arxiv_daily.protocol import CorpusPaper
 # ---------------------------------------------------------------------------
 
 
-def test_normalize_path_patterns_rejects_single_string_for_include_path():
-    with pytest.raises(TypeError, match="config.zotero.include_path must be a list"):
-        normalize_path_patterns("2026/survey/**", "include_path")
+def test_normalize_path_patterns_accepts_single_string_for_include_path():
+    assert normalize_path_patterns("2026/survey/**", "include_path") == ["2026/survey/**"]
 
 
 def test_normalize_path_patterns_accepts_list_config_for_include_path():
@@ -27,9 +26,8 @@ def test_normalize_path_patterns_accepts_list_config_for_include_path():
     ]
 
 
-def test_normalize_path_patterns_rejects_single_string_for_ignore_path():
-    with pytest.raises(TypeError, match="config.zotero.ignore_path must be a list"):
-        normalize_path_patterns("archive/**", "ignore_path")
+def test_normalize_path_patterns_accepts_single_string_for_ignore_path():
+    assert normalize_path_patterns("archive/**", "ignore_path") == ["archive/**"]
 
 
 def test_normalize_path_patterns_accepts_list_config_for_ignore_path():

@@ -13,14 +13,17 @@ from openai import OpenAI
 from tqdm import tqdm
 
 
-def normalize_path_patterns(patterns: list[str] | ListConfig | None, config_key: str) -> list[str] | None:
+def normalize_path_patterns(patterns: str | list[str] | ListConfig | None, config_key: str) -> list[str] | None:
     if patterns is None:
         return None
+
+    if isinstance(patterns, str):
+        return [patterns]
 
     if not isinstance(patterns, (list, ListConfig)):
         raise TypeError(
             f"config.zotero.{config_key} must be a list of glob patterns or null, "
-            'for example ["2026/survey/**"]. Single strings are not supported.'
+            'for example ["2026/survey/**"].'
         )
 
     if any(not isinstance(pattern, str) for pattern in patterns):
